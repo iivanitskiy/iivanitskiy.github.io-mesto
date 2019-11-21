@@ -1,0 +1,14 @@
+.popup-edit__button {
+  width: 100%;
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  margin-top: 48px;
+  color: white;
+  background-color: black;
+  font-size: 18px;
+}
+
+.popup-edit__button:disabled {
+  color: rgba(0, 0, 0, .2);
+  background-color: white;
+}
