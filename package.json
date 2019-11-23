@@ -1,6 +1,6 @@
 {
   "name": "iivanitskiy.github.io-mesto",
-  "homepage": "https://iivanitskiy.github.io/mesto/",
+  "homepage": "https://github.com/iivanitskiy/iivanitskiy.github.io-mesto",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,7 +18,6 @@
   "bugs": {
     "url": "https://github.com/iivanitskiy/iivanitskiy.github.io-mesto/issues"
   },
-  "homepage": "https://github.com/iivanitskiy/iivanitskiy.github.io-mesto#readme",
   "devDependencies": {
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
