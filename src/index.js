@@ -4,23 +4,19 @@ import './pages/index.css';
 
 import {Card, placeCardLikeIcon, placeCardLikeIconLiked} from './js/card.js';
 import {CardList, placesList} from './js/cardlist.js';
-import {Api} from './js/api';
-import {Popup, popup, popupClose, popupButton, } from './js/popup';
-import {popupForm, popupInputName, popupInputLink} from './js/popupform';
-import {popupEdit, popupEditClose, popupEditButton} from './js/popupEdit';
-import {popupEditInputName, popupEditInputJob, popupEditForm} from './js/popupEditForm';
-import {popupCard, popupCardContent, popupCardClose} from './js/popupCard';
-import {userAvatar, userName, userJob, editButton, AddButton} from './js/mainPage';
-import {error, errorAlert, errorMsg, errorAlertEdit, errorMsgEdit} from './js/error';
+import {Api} from './js/api.js';
+import {Popup, popup, popupClose, popupButton, } from './js/popup.js';
+import {popupForm, popupInputName, popupInputLink} from './js/popupform.js';
+import {popupEdit, popupEditClose, popupEditButton} from './js/popupEdit.js';
+import {popupEditInputName, popupEditInputJob, popupEditForm} from './js/popupEditForm.js';
+import {popupCard, popupCardContent, popupCardClose} from './js/popupCard.js';
+import {userAvatar, userName, userJob, editButton, AddButton} from './js/mainPage.js';
+import {error, errorAlert, errorMsg, errorAlertEdit, errorMsgEdit} from './js/error.js';
 
 const newPopup = new Popup(popup);
 const editPopup = new Popup(popupEdit);
 const cardPopup = new Popup(popupCard);
 const cardList = new CardList(placesList, [])
-
-function inCards(item) {
-  item.map((card) => new Card(card)).forEach((card) => cardList.addCard(card));
-}
 
 // Кнопки ->
 AddButton.addEventListener('click', function () {
@@ -60,9 +56,10 @@ placesList.addEventListener('click', function () {
 // Формы ->
 popupForm.addEventListener('submit', function(event) {  
   event.preventDefault();
-  api.postNewCard({name: popupInputName.value, link: popupInputLink.value});
-  cardList.addCard(new Card());
-  popup.classList.remove('popup_is-opened');
+  api.postNewCard({name: popupInputName.value, link: popupInputLink.value}).then(res => {
+    cardList.addCard(new Card(res));
+    popup.classList.remove('popup_is-opened');
+  });
 });
 
 popupForm.addEventListener('input', function () {
@@ -110,7 +107,11 @@ function info(item) {
   userAvatar.style.backgroundImage = `url(${item.avatar})`
 }
 
-const api = new Api({
+function inCards(item) {
+  item.map((card) => new Card(card)).forEach((card) => cardList.addCard(card));
+}
+
+export const api = new Api({
   baseUrl: serverUrl,
   headers: {
     authorization: '860e5df7-67da-4971-ba43-fe69e85865bc',
@@ -119,5 +120,4 @@ const api = new Api({
 });
 
 api.getInfo().then((response) => info(response));
-
 api.getInitialCards().then((response) => inCards(response))

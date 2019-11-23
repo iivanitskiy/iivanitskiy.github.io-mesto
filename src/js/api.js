@@ -1,3 +1,5 @@
+import {popupEditInputName, popupEditInputJob} from './popupEditForm.js';
+
 export class Api {
   constructor(options) {
     this.options = options;
@@ -59,9 +61,6 @@ export class Api {
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-      .then(res => {
-        console.log(res.ok);
-      })
       .catch((err) => {
         console.log(err);     
     });

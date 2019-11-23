@@ -1,3 +1,5 @@
+import {api} from '../index.js';
+
 export class Card {
   constructor(item) {
     this.item = item;
