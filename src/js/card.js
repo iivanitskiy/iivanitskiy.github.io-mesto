@@ -1,11 +1,6 @@
-const placesList = document.querySelector('.places-list');
-const placeCardLikeIcon = document.querySelector('.place-card__like-icon');
-const placeCardLikeIconLiked = document.querySelector('.place-card__like-icon_liked');
-const popupForm = document.querySelector('.popup__form');
-const popupInputName = document.querySelector('.popup__input_type_name');
-const popupInputLink = document.querySelector('.popup__input_type_link-url');
+import {api} from '../index.js';
 
-class Card {
+export class Card {
   constructor(item) {
     this.item = item;
   }
@@ -50,17 +45,5 @@ class Card {
   }
 }
 
-class CardList {
-  constructor(container, initialCards) { 
-    this.container = container;
-    this.cards = initialCards;
-    this.render()
-  }
-  addCard(card) {
-      this.cards.push(card); 
-      this.container.appendChild(card.create());
-  }
-  render() {
-    this.cards.forEach((card) => this.container.appendChild(card.create()));
-  }
-}
+export const placeCardLikeIcon = document.querySelector('.place-card__like-icon');
+export const placeCardLikeIconLiked = document.querySelector('.place-card__like-icon_liked');
